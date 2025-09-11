@@ -1,0 +1,185 @@
+.text-font h2 {
+    font-family: 'Goldman', sans-serif;
+    font-weight: 700;
+}
+
+.text-support-by{
+    font-family: 'Goldman', sans-serif;
+    font-weight: 400;
+    color: rgb(170, 170, 170);
+}
+
+        body {
+            background-color: black;
+            color: white;
+            margin: 0;
+            font-family: 'Goldman', sans-serif;
+        }
+        .text-image-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #000000;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+        }
+        .text-content {
+            flex: 1;
+            padding-right: 30px;
+        }
+        .text-content h2 {
+            margin-top: 0;
+            font-size: 2em;
+            margin-bottom: 16px;
+        }
+        .text-content p {
+            font-size: 1.15em;
+            line-height: 1.7;
+        }
+        .image-content {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+        /* รูปภาพปกติ */
+        .image-content img {
+                max-width: 320px;
+                width: 100%;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 800px) {
+            .image-content img {
+                max-width: 100vw;
+                width: 100vw;
+                border-radius: 0;
+                margin-left: -20px;
+                margin-right: -20px;
+                box-sizing: border-box;
+            }
+        }
+         .image-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* จัดเรียงเป็นแนวตั้ง */
+    align-items: center;
+    gap: 16px; /* ระยะห่างระหว่างรูปกับปุ่ม */
+}
+
+.image-box img {
+    max-width: 320px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1; /* ป้องกันไม่ให้บังปุ่ม */
+}
+
+.button-box a {
+    display: inline-block;
+    position: relative;
+    z-index: 10; /* บังคับให้ปุ่มอยู่บนสุด */
+    text-decoration: none;
+}
+
+        @media (max-width: 800px) {
+            .text-image-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 10px;
+            }
+            .text-content {
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+            .image-content {
+                justify-content: center;
+            }
+        }
+        .text-king{
+            font-family: 'Goldman', sans-serif;
+            font-weight: 700;
+            color: white;
+        }
+
+/* ทำให้ body เป็น flex container เต็มจอ */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ส่วนเนื้อหาอื่น ๆ จะยืดเต็มที่ */
+.main-content {
+    flex: 1; /* ดัน footer ลงล่าง */
+}
+
+/* footer จะอยู่ล่างสุดเสมอ */
+.footer {
+    width: 100%;
+    background: #000000;
+    color: #fff;
+    text-align: center;
+    padding: 18px 10px;
+    font-size: 1em;
+    letter-spacing: 1px;
+}
+@media (max-width: 600px) {
+    .footer {
+        font-size: 0.95em;
+        padding: 14px 5px;
+    }
+}
+
+.main-btn {
+            margin-top: 18px;
+            padding: 10px 28px;
+            font-size: 1.1em;
+            background: #ffffff;
+            color: #222;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Goldman', sans-serif;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: background 0.2s;
+        }
+
+/* เมื่อเมาส์ชี้ */
+.main-btn:hover {
+    background: #979797; /* เปลี่ยนเป็นสีที่ต้องการ */
+    color: #000000;      /* ถ้าต้องการให้ตัวอักษรเปลี่ยนสีด้วย */
+}
+
+
+        @media (max-width: 800px) {
+            .desktop-btn {
+                display: none !important;
+            }
+            .mobile-btn {
+                display: block !important;
+                margin: 18px auto 0 auto;
+            }
+            .image-content {
+                flex-direction: column;
+                align-items: center;
+                display: flex;
+            }
+        }
+        @media (min-width: 801px) {
+            .mobile-btn {
+                display: none !important;
+            }
+            .desktop-btn {
+                display: inline-block !important;
+            }
+
+
+        }
