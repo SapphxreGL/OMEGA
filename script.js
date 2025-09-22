@@ -9,6 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Jamemy Vega  (Winterfell)', position: 'Player in Winterfell Vega', photo: 'pic_profile/jame.jpg', link: 'https://www.facebook.com/jamemy.zewell' },
         { name: 'Mallow Btk', position: 'Player in Omega', photo: 'pic_profile/mallow.jpg', link: 'https://www.facebook.com/mallow.btk' },
         { name: 'Solar X. Vongolay', position: 'Player in Vongolay', photo: 'pic_profile/milk.jpg', link: 'https://www.facebook.com/solarx.ngl' },
+        { name: 'BxngGz Trydiff  (Omega)', position: 'Player in Omega', photo: 'pic_profile/artee.jpg', link: 'https://www.facebook.com/artee.trydiff' },
+        { name: 'BungGot Winterfell (Support)', position: 'Player in Winterfell , Semipro', photo: 'pic_profile/artee.jpg', link: 'https://www.facebook.com/gotji.Semipro#' },
+        { name: 'Jaywynn Unfair (Support)', position: 'Player in Omega', photo: 'pic_profile/artee.jpg', link: 'https://www.facebook.com/jaywynn.588#' },
+        { name: 'Artee Trydiff', position: 'Player in Omega', photo: 'pic_profile/artee.jpg', link: 'https://www.facebook.com/artee.trydiff' },
+        { name: 'Artee Trydiff', position: 'Player in Omega', photo: 'pic_profile/artee.jpg', link: 'https://www.facebook.com/artee.trydiff' },
+        { name: 'Artee Trydiff', position: 'Player in Omega', photo: 'pic_profile/artee.jpg', link: 'https://www.facebook.com/artee.trydiff' },
+        { name: 'Artee Trydiff', position: 'Player in Omega', photo: 'pic_profile/artee.jpg', link: 'https://www.facebook.com/artee.trydiff' },
+        { name: 'Artee Trydiff', position: 'Player in Omega', photo: 'pic_profile/artee.jpg', link: 'https://www.facebook.com/artee.trydiff' },
+        { name: 'Artee Trydiff', position: 'Player in Omega', photo: 'pic_profile/artee.jpg', link: 'https://www.facebook.com/artee.trydiff' },
+        { name: 'Artee Trydiff', position: 'Player in Omega', photo: 'pic_profile/artee.jpg', link: 'https://www.facebook.com/artee.trydiff' },
         { name: 'Artee Trydiff', position: 'Player in Omega', photo: 'pic_profile/artee.jpg', link: 'https://www.facebook.com/artee.trydiff' },
     ];
 
@@ -40,4 +50,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
         memberList.appendChild(memberCard);
     });
+
 });
