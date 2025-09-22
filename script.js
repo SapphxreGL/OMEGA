@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Killua Winterfell Delta (Omega)', position: 'Player in Winterfell Delta', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/Killuawtfdelta' },
         { name: 'Puud Sabudbob (Diamondonsnow)', position: 'Player in Diamondonsnow', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/puud.zera' },
         { name: 'Hell Ezj Sabudbob (Omega)', position: 'Player in Sabudbob', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/hell.smokepurpp' },
-        { name: 'Jamemy Vega  (Winterfell)', position: 'Player in Winterfell Vega', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/jamemy.zewell' },
+        { name: 'Jamemy Vega (Winterfell)', position: 'Player in Winterfell Vega', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/jamemy.zewell' },
         { name: 'Mallow Btk', position: 'Player in Omega', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/mallow.btk' },
         { name: 'Solar X. Vongolay', position: 'Player in Vongolay', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/solarx.ngl' },
         { name: 'BxngGz Trydiff  (Omega)', position: 'Player in Omega', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/artee.trydiff' },
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Jaywynn Unfair (Support)', position: 'Player in Winterfell , Unfair ,588', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/jaywynn.588#' },
         { name: 'Mikey Kingoftrap (Support)', position: 'Player in Kingoftrap', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/mike.diffstyle#' },
         { name: 'Nugreen Realchiphay', position: 'Player in Omega', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/nugreen.f.bolt#' },
-        { name: 'Shiro Winterfell Layout', position: 'Player in Winterfell Layout', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/profile.php?id=61576496625779#' },
+        { name: 'Shiro Winterfell Layout (Support)', position: 'Player in Winterfell Layout', photo: 'pic_profile/369.png', link: 'https://www.facebook.com/profile.php?id=61576496625779#' },
     ];
 
     const memberList = document.getElementById('member-list');
@@ -47,4 +47,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
 
