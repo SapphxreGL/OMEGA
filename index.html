@@ -1,59 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
-    <style>
-        .main-btn {
-            /* ...existing styles... */
-            text-decoration: none;
-            display: inline-block;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMEGA - Landing Page</title>
+  <style>
+    @font-face {
+      font-family: 'Orbitron';
+      src: url('Orbitron-Regular.ttf') format('truetype');
+    }
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMEGA IS KING</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: url('L3-edit.png') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Layer มืดครอบภาพ */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(5px);
+      z-index: 0;
+    }
+
+    .content {
+      z-index: 1;
+      padding: 20px;
+      animation: fadeIn 1.8s ease-in-out;
+    }
+
+    h1 {
+      font-size: 68px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ffffff;
+      text-shadow: 0 0 20px #00ffff;
+      margin-bottom: 10px;
+    }
+
+p {
+  font-size: 20px;
+  color: #ffffff;          /* เปลี่ยนจากเทาอ่อนเป็นขาว */
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  font-weight: 700;        /* เพิ่มความหนา (100–900, ยิ่งมากยิ่งหนา) */
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.6); /* เพิ่มแสงเรืองๆ สวยแบบ modern */
+}
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      background: linear-gradient(90deg, #00e6ff, #6b00ff);
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+
+    .btn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 13px;
+      color: #bbb;
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 46px; }
+      p { font-size: 15px; }
+      .btn { padding: 12px 28px; font-size: 14px; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 36px; }
+      p { font-size: 13px; }
+      .btn { padding: 10px 24px; font-size: 13px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="main-content">
-    <section class="text-image-section">
-        <div class="text-content text-font">
-            <h2>OMEGA</h2>
-            <h3 class="text-king">KING OF 369</h3>
-            <p class ="text-support-by">
-                By<br>
-                Jaywynn Unfair<br>
-                KingLayout<br>
-                <br>
-                Support by<br>
-                Player in UNFAIR<br>
-                Player in SEMIPRO<br>
-                Player in WINTERFELL<br>
-                Player in WINTERFELL ZERA<br>
-                Player in WINTERFELL DELTA<br>
-                Player in WINTERFELL ZNINE<br>
-                Player in WINTERFELL VEGA<br>
-                Player in DIAMONDONSNOW<br>
-                Player in VONGOLAY<br>
-                Player in SABUDBOB<br>                
-            </p>
-            <a href="member.html" class="main-btn desktop-btn" role="button">MEMBER LIST</a>
-        </div>
-
-        <div class="image-content">
-            <img src="logo web.png" alt="สมาชิก" />
-            <a href="member.html" class="main-btn mobile-btn" role="button">MEMBER LIST</a>
-        </div>
-
-    </section>
-    </div>
-    <footer class="footer text-king">
-        &copy; 2025 OMEGA | KING OF 369. All rights reserved. Developed by Sapphxre Winterfell Zera.    </footer>
+  <div class="content">
+    <h1>OMEGA</h1>
+    <p>KING OF 369<br>PLAY WITH ME IF YOU DARE</p>
+    <button class="btn" onclick="window.location.href='member.html'">MEMBER LIST</button>
+  </div>
+  <footer>© 2025 OMEGA DEV BY SAPPHXRE</footer>
 </body>
-
 </html>
-
-

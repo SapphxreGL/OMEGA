@@ -1,20 +1,438 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMEGA MEMBER LIST</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="member.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>รายชื่อสมาชิกและผลงาน</title>
+  <style>
+    :root {
+      --bg: #0f1720;
+      --card-bg:rgba(0,0,0,0.7);
+      --card-radius: 12px;
+      --gap: 20px;
+    }
+
+    *{box-sizing:border-box}
+    body {
+  margin:0;
+  min-height:100vh;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial;
+  color:#e6eef8;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:48px 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('L3-edit.png') center/cover no-repeat;
+  background-color: rgba(0,0,0,0.7); /* สีดำเข้ม + ความเข้มปรับได้ */
+  background-blend-mode: overlay; /* ผสมภาพกับสีดำ */
+  filter: blur(6px); /* ปรับความเบลอ */
+  z-index: -1;
+}
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      width:1200px;
+      max-width:100%;
+      margin-bottom:48px;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    header{text-align:center; margin-bottom:28px;}
+    header h1 {
+      margin:0; font-size:28px; letter-spacing:0.4px;
+      background:linear-gradient(90deg,#dbeafe,#c7f9ff 60%, #ffd1dc 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+
+    .search-box { margin-bottom:20px; text-align:center; }
+    .search-box input {
+      padding:8px 12px; border-radius:6px; border:none;
+      width:300px; max-width:100%; font-size:14px;
+    }
+
+    .grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap); margin-bottom:48px;
+    }
+
+    .card-wrap {
+      position:relative;
+      border-radius:calc(var(--card-radius) + 2px);
+      padding:2px;
+      background: linear-gradient(90deg, #ff3b3b, #ffb86b, #6bffb8, #63b3ff, #cf6bff, #ff3b3b);
+      background-size: 300% 100%;
+      animation: gradientMove 4s linear infinite, fadeUp 1s ease forwards;
+      transition: transform .25s ease;
+      opacity: 0;
+    }
+
+    .card-wrap:nth-child(1){ animation-delay: 0.5s; }
+    .card-wrap:nth-child(2){ animation-delay: 0.6s; }
+    .card-wrap:nth-child(3){ animation-delay: 0.7s; }
+
+    .card {
+      background:var(--card-bg);
+      border-radius:var(--card-radius);
+      padding:16px; position:relative; overflow:hidden;
+      min-height:120px; display:flex; gap:12px; align-items:center;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    /* ==== 🔹 Avatar (รองรับรูปหรือข้อความ) ==== */
+    .avatar {
+      width:64px; height:64px; border-radius:12px;
+      flex:0 0 64px; display:flex; align-items:center; justify-content:center;
+      font-weight:700; color:#e6eef8; font-size:20px;
+      background:linear-gradient(180deg,#223344 0%, #172233 100%);
+      border:1px solid rgba(255,255,255,0.03);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .avatar img {
+      width:100%; height:100%; object-fit:cover;
+      border-radius:inherit;
+      display:block;
+    }
+
+    .meta { flex:1; position:relative; padding-top:0; }
+    .meta h3 { margin:0 0 6px; font-size:16px; }
+    .meta p { margin:0; font-size:13px; color:#9fb1c6; }
+
+    .fb-btn {
+      background:#ffffff; border:none; border-radius:50%; width:28px; height:28px;
+      display:flex; align-items:center; justify-content:center;
+      position:absolute; top:8px; right:8px; cursor:pointer; font-size:16px; color:#000;
+      transition: background .2s, color .2s;
+    }
+    .fb-btn:hover { background:#e0e0e0; color:#000; }
+
+    .card-wrap:hover { transform: translateY(-10px); }
+    .card-wrap:hover .card {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+    }
+    .card::after {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      border-radius:inherit;
+      background: linear-gradient(120deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+      mix-blend-mode:overlay;
+    }
+    .badge {
+      display:inline-block; padding:6px 8px; border-radius:999px;
+      font-size:12px; background:rgba(255,255,255,0.03); color:#dbeafe;
+    }
+
+    @keyframes gradientMove {
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
+
+    @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+    @media (max-width:640px){.grid{grid-template-columns:repeat(1,1fr);} body{padding:24px}}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>OMEGA MEMBER LIST</h1>
-        <a href="index.html" class="back-link">‹ ย้อนกลับ</a>
-        <div id="member-list" class="member-list-single-column"></div>
+
+  <!-- MEMBER LIST -->
+  <div class="container">
+    <header><h1>MEMBER LIST</h1></header>
+    <div class="search-box">
+      <input type="text" id="searchMembers" placeholder="ค้นหาสมาชิก..." onkeyup="filterMembers()">
     </div>
-    <script src="script.js"></script>
+    <main class="grid" id="membersGrid">
+
+      <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="AK">
+          </div>
+          <div class="meta">
+            <h3>Sapphxre Diamondonsnow</h3>
+            <p>Winterfell Zera UZI</p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/sapphxre.zera','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="MM">
+          </div>
+          <div class="meta">
+            <h3>Albert Znine</h3>
+            <p>Winterfell Z9</p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/albert.znine','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+      
+            <!-- <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="PJ">
+          </div>
+          <div class="meta">
+            <h3>Armyz Winterfell Delta<span class="badge">Moderator</span></h3>
+            <p>สมาชิกเมื่อ 1 มี.ค. 2024 — สถานะ: ออนไลน์</p>
+            <button class="fb-btn" onclick="window.open('https://facebook.com/yourprofile3','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+       -->
+      <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="PJ">
+          </div>
+          <div class="meta">
+            <h3>Armyz Winterfell Delta</h3>
+            <p>(Ezj)</p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/arm.delta.2024','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="PJ">
+          </div>
+          <div class="meta">
+            <h3>Killua Winterfell Delta</h3>
+            <p></p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/Killuawtfdelta','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+
+    <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="PJ">
+          </div>
+          <div class="meta">
+            <h3>Hell Ezj Sabudbob</h3>
+            <p></p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/hell.smokepurpp','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+
+    <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="PJ">
+          </div>
+          <div class="meta">
+            <h3>Mallow Btk</h3>
+            <p></p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/mallow.btk','_blank')">🔗</button>
+          </div>
+        </div>
+    </article>
+
+    <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="PJ">
+          </div>
+          <div class="meta">
+            <h3>Puud Sabudbob</h3>
+            <p>Diamondonsnow</p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/puud.zera','_blank')">🔗</button>
+          </div>
+        </div>
+    </article>
+
+    <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="PJ">
+          </div>
+          <div class="meta">
+            <h3>Jamemy Vega</h3>
+            <p>(Winterfell)</p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/jamemy.zewell','_blank')">🔗</button>
+          </div>
+        </div>
+    </article>
+
+    <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="PJ">
+          </div>
+          <div class="meta">
+            <h3>BxngGz Trydiff</h3>
+            <p></p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/artee.trydiff','_blank')">🔗</button>
+          </div>
+        </div>
+    </article>
+
+    <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="PJ">
+          </div>
+          <div class="meta">
+            <h3>Solar X. Vongolay </h3>
+            <p></p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/solarx.ngl','_blank')">🔗</button>
+          </div>
+        </div>
+    </article>
+
+    <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="PJ">
+          </div>
+          <div class="meta">
+            <h3>Win Baew</h3>
+            <p></p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/babywin101','_blank')">🔗</button>
+          </div>
+        </div>
+    </article>
+
+    <article class="card-wrap">
+        <div class="card">
+          <div class="avatar">
+            <img src="369.png" alt="PJ">
+          </div>
+          <div class="meta">
+            <h3>Nugreen Realchiphay</h3>
+            <p></p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/nugreen.f.bolt','_blank')">🔗</button>
+          </div>
+        </div>
+    </article>
+
+
+
+
+
+    </main>
+  </div>
+
+  <!-- ACHIEVEMENT -->
+  <div class="container">
+    <header><h1>SUPPORT BY</h1></header>
+    <main class="grid" id="projectsGrid">
+
+      <article class="card-wrap">
+        <div class="card">
+          <div class="avatar"><img src="369.png" alt="P1"></div>
+          <div class="meta">
+            <h3>Jaywynn Unfair</h3>
+            <p>Sabudbob</p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/jaywynn.588','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card-wrap">
+        <div class="card">
+          <div class="avatar"><img src="369.png" alt="P2"></div>
+          <div class="meta">
+            <h3>Mikey Kingoftrap</h3>
+            <p>Winterfell</p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/mike.diffstyle','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card-wrap">
+        <div class="card">
+          <div class="avatar"><img src="369.png" alt="P3"></div>
+          <div class="meta">
+            <h3>BungGot Winterfell</h3>
+            <p>Semipro</p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/gotji.Semipro#','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card-wrap">
+        <div class="card">
+          <div class="avatar"><img src="369.png" alt="P3"></div>
+          <div class="meta">
+            <h3>Realj Winterfell</h3>
+            <p>FivedoubleEight</p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/realj.sabudbob','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card-wrap">
+        <div class="card">
+          <div class="avatar"><img src="369.png" alt="P3"></div>
+          <div class="meta">
+            <h3>Aizah Winterfell</h3>
+            <p>By Winterfell Delta</p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/Aizohz','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card-wrap">
+        <div class="card">
+          <div class="avatar"><img src="369.png" alt="P3"></div>
+          <div class="meta">
+            <h3>Addictz Protrawangphuenthitangradap</h3>
+            <p></p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/addictz.smokepurpp','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card-wrap">
+        <div class="card">
+          <div class="avatar"><img src="369.png" alt="P3"></div>
+          <div class="meta">
+            <h3>Shiro Winterfell Layout</h3>
+            <p>(Winterfell)</p>
+            <button class="fb-btn" onclick="window.open('https://www.facebook.com/profile.php?id=61576496625779','_blank')">🔗</button>
+          </div>
+        </div>
+      </article>
+
+    </main>
+  </div>
+
+  <script>
+    function fuzzyMatch(text, input) {
+      text = text.toLowerCase();
+      input = input.toLowerCase();
+      return text.includes(input);
+    }
+
+    function filterMembers() {
+      const input = document.getElementById('searchMembers').value;
+      const cards = document.querySelectorAll('#membersGrid .card-wrap');
+      cards.forEach(card => {
+        const text = card.textContent;
+        card.style.display = fuzzyMatch(text, input) ? '' : 'none';
+      });
+    }
+  </script>
+
 </body>
 </html>
